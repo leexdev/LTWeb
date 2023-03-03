@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "DetailsMusic";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string filePath = ViewBag.filePath;
+    string Title = ViewBag.song_Title;
+    string artist = ViewBag.artist;
+    string filePathUrl = "";
+
+    if (!string.IsNullOrEmpty(filePath))
+    {
+        filePathUrl = Url.Content(filePath);
+    }
+}
+
+<h2>@Title - @artist</h2>
+
+<audio controls style="margin-top: 24px;">
+    <source src="@filePathUrl" type="audio/ogg">
+    <source src="@filePathUrl" type="audio/mp3">
+</audio>
+
+<p style="margin-top: 24px;">@Html.ActionLink("Tải Về", "Download", new { filePath = ViewBag.FilePath, fileName = ViewBag.FileName })</p>
